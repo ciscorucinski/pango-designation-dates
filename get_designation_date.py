@@ -67,7 +67,7 @@ def main(
         for file in commit.modified_files:
             if file.filename == "lineages.csv":
                 code = file.source_code
-                df = pd.read_csv(io.StringIO(code))
+                df = pd.read_csv(io.StringIO(code), on_bad_lines='warn')
                 try:
                     for lineage in df.lineage.unique():
                         if lineage not in first_mention:
